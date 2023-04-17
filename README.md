@@ -1,51 +1,6 @@
-[![StandWithUkraineBanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://supportukrainenow.org/)
-<h1 align="center">Telegram File Stream Bot</h1>
-<p align="center">
-  <a href="https://github.com/EverythingSuckz/TG-FileStreamBot">
-    <img src="https://socialify.git.ci/EverythingSuckz/TG-FileStreamBot/image?description=1&font=Source%20Code%20Pro&forks=1&issues=1&logo=https://telegra.ph/file/01385a9f4cf0419682b87.png&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark" alt="Cover Image" width="650">
-  </a>
-  <p align="center">
-    A Telegram bot to <b>generate direct link</b> for your Telegram files.
-    <br />
-    <a href="https://telegram.dog/TG_FileStreamBot"><strong>Demo Bot »</strong></a>
-    <br />
-    <a href="https://github.com/EverythingSuckz/TG-FileStreamBot/issues">Report a Bug</a>
-    |
-    <a href="https://github.com/EverythingSuckz/TG-FileStreamBot/issues">Request Feature</a>
-  </p>
-</p>
 
-<hr>
 
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-this-bot">About this Bot</a>
-      <ul>
-        <li><a href="#original-repository">Original Repository</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#how-to-make-your-own">How to make your own</a>
-      <ul>
-        <li><a href="#host-it-on-vps-or-locally">Run it in a VPS / local</a></li>
-        <li><a href="#deploy-using-docker">Deploy using Docker</a></li>
-      </ul>
-    </li>
-    <li><a href="#setting-up-things">Setting up things</a></li>
-    <ul>
-      <li><a href="#mandatory-vars">Mandatory Vars</a></li>
-      <li><a href="#optional-vars">Optional Vars</a></li>
-    </ul>
-    <li><a href="#how-to-use-the-bot">How to use the bot</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#contact-me">Contact me</a></li>
-    <li><a href="#credits">Credits</a></li>
-  </ol>
-</details>
-
-## About This Bot
+## 关于机器人
 
 <p align="center">
     <a herf="https://github.com/EverythingSuckz/TG-FileStreamBot">
@@ -53,18 +8,18 @@
     </a>
 </p>
 <p align='center'>
-    This bot will give you stream links for Telegram files without the need of waiting till the download completes
+    这个机器人可以为您获取 Telegram Web文件的直链。
 </p>
 
-### Original Repository
+### 原始版本库
 
-The main working part was taken from [Megatron](https://github.com/eyaadh/megadlbot_oss) and thanks to [eyaadh](https://github.com/eyaadh) for his awesome project.
+代码来自自 [Megatron](https://github.com/eyaadh/megadlbot_oss)，感谢 [eyaadh](https://github.com/eyaadh) 的项目。
 
-## How to make your own
+## 如何运行TG-FilelinkBot
 
-Either you could locally host or deploy on ~~[Heroku](https://heroku.com)~~ Free tier is dead.
+你可以在 VPS 或者本地运行，也可以使用 Docker 部署。运行前需要设置一些必需变量，如 API ID、API HASH 和 BOT_TOKEN 等。
 
-### Host it on VPS or Locally
+### 在 VPS 或本地运行
 
 ```sh
 git clone https://github.com/EverythingSuckz/TG-FileStreamBot
@@ -75,41 +30,42 @@ pip3 install -r requirements.txt
 python3 -m WebStreamer
 ```
 
-and to stop the whole bot,
- do <kbd>CTRL</kbd>+<kbd>C</kbd>
+终止机器人运行，按下组合键 <kbd>CTRL</kbd>+<kbd>C</kbd>
 
-> **If you wanna run this bot 24/7 on the VPS, follow thesesteps.**
+> **如果您想在 后台运行此机器人，请按照以下步骤操作。**
 > ```sh
 > sudo apt install tmux -y
 > tmux
 > python3 -m WebStreamer
 > ```
-> now you can close the VPS and the bot will run on it.
+> 现在您的机器人已经在后台运行。
 
-### Deploy using Docker
-First clone the repository
+### 使用 Docker 部署
+首先克隆仓库
 ```sh
 git clone https://github.com/EverythingSuckz/TG-FileStreamBot
 cd TG-FileStreamBot
 ```
-then build the docker image
+然后构建 Docker 镜像
+
+使用以下命令构建 Docker 镜像并标记名称为 stream-bot：
 ```sh
 docker build . -t stream-bot
 ```
-now create the `.env` file with your variables. and start your container:
+现在创建 `.env` 文件并设置变量，然后启动容器：
 ```sh
 docker run -d --restart unless-stopped --name TG-FilelinkBot \
 -v /PATH/TO/.env:/app/.env \
 -p 8081:8081 \
 stream-bot
 ```
+由于 `PORT` 变量用于 URL 生成且必须与容器公开端口一致，因此请确保这两个端口号一致。如果您更改了 `PORT` 变量，请相应更改 docker run 命令（例如：`PORT=9000` -> `-p 9000:9000`）。
 
-your `PORT` variable has to be consistent with the container's exposed port since it's used for URL generation. so remember if you changed the `PORT` variable your docker run command changes too. (example: `PORT=9000` -> `-p 9000:9000`)
-
-if you need to change the variables in `.env` file after your bot was already started, all you need to do is restart the container for the bot settings to get updated:
+如果您已经启动了机器人并需要更改 `.env` 文件中的变量，则只需重新启动容器即可更新机器人设置：
 ```sh
 docker restart TG-FilelinkBot
 ```
+
 
 ### Deploy using docker-compose
 First install docker-compose. For debian based, run 

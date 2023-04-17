@@ -98,7 +98,7 @@ docker build . -t stream-bot
 ```
 now create the `.env` file with your variables. and start your container:
 ```sh
-docker run -d --restart unless-stopped --name fsb \
+docker run -d --restart unless-stopped --name TG-FilelinkBot \
 -v /PATH/TO/.env:/app/.env \
 -p 8081:8081 \
 stream-bot
@@ -108,7 +108,7 @@ your `PORT` variable has to be consistent with the container's exposed port sinc
 
 if you need to change the variables in `.env` file after your bot was already started, all you need to do is restart the container for the bot settings to get updated:
 ```sh
-docker restart fsb
+docker restart TG-FilelinkBot
 ```
 
 ### Deploy using docker-compose

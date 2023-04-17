@@ -22,8 +22,8 @@
 ### 在 VPS 或本地运行
 
 ```sh
-git clone https://github.com/EverythingSuckz/TG-FileStreamBot
-cd TG-FileStreamBot
+git clone https://github.com/lzw981731/TG-FilelinkBot
+cd TG-FilelinkBot
 python3 -m venv ./venv
 . ./venv/bin/activate
 pip3 install -r requirements.txt
@@ -43,8 +43,8 @@ python3 -m WebStreamer
 ### 使用 Docker 部署
 首先克隆仓库
 ```sh
-git clone https://github.com/EverythingSuckz/TG-FileStreamBot
-cd TG-FileStreamBot
+git clone https://lzw981731/TG-FilelinkBot
+cd TG-FilelinkBot
 ```
 然后构建 Docker 镜像
 

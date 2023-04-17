@@ -22,17 +22,17 @@ routes = web.RouteTableDef()
 async def root_route_handler(_):
     return web.json_response(
         {
-            "server_status": "running",
-            "uptime": utils.get_readable_time(time.time() - StartTime),
-            "telegram_bot": "@" + StreamBot.username,
-            "connected_bots": len(multi_clients),
-            "loads": dict(
+            "服务器当前的运行状态": "（正在运行）",
+            "服务器运行时间": utils.get_readable_time(time.time() - StartTime),
+            "机器人的用户名为": "@" + StreamBot.username,
+            "服务器连接数": len(multi_clients),
+            "负载": dict(
                 ("bot" + str(c + 1), l)
                 for c, (_, l) in enumerate(
                     sorted(work_loads.items(), key=lambda x: x[1], reverse=True)
                 )
             ),
-            "version": __version__,
+            "程序版本": __version__,
         }
     )
 

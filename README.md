@@ -100,7 +100,7 @@ now create the `.env` file with your variables. and start your container:
 ```sh
 docker run -d --restart unless-stopped --name fsb \
 -v /PATH/TO/.env:/app/.env \
--p 8000:8000 \
+-p 8081:8081 \
 stream-bot
 ```
 
@@ -118,8 +118,8 @@ sudo apt install docker-compose -y
 ```
 Afterwards, clone the repository
 ```sh
-git clone https://github.com/EverythingSuckz/TG-FileStreamBot
-cd TG-FileStreamBot
+git clone https://github.com/lzw981731/TG-FilelinkBot
+cd TG-FilelinkBot
 ```
 No need to create .env file, just edit the variables in the docker-compose.yml
 

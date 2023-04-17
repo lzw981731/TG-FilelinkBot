@@ -43,7 +43,7 @@ python3 -m WebStreamer
 ### 使用 Docker 部署
 首先克隆仓库
 ```sh
-git clone git clone https://github.com/lzw981731/TG-FilelinkBot
+git clone https://github.com/lzw981731/TG-FilelinkBot
 cd TG-FilelinkBot
 ```
 然后构建 Docker 镜像

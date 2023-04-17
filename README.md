@@ -67,23 +67,25 @@ docker restart TG-FilelinkBot
 ```
 
 
-### Deploy using docker-compose
-First install docker-compose. For debian based, run 
+### 使用 docker-compose 部署
+
+首先安装 docker-compose。如果是基于 Debian 的系统，请运行以下命令：
 ```sh
 sudo apt install docker-compose -y
 ```
-Afterwards, clone the repository
+
+然后，克隆存储库：
 ```sh
 git clone https://github.com/lzw981731/TG-FilelinkBot
 cd TG-FilelinkBot
 ```
-No need to create .env file, just edit the variables in the docker-compose.yml
 
-Now run the compose file
+无需创建 `.env` 文件，只需编辑 `docker-compose.yml` 中的变量。
+
+现在运行 compose 文件：
 ```sh
 sudo docker compose up -d
 ```
-
 ## Setting up things
 
 If you're locally hosting, create a file named `.env` in the root directory and add all the variables there.

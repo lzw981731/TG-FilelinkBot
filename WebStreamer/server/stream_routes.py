@@ -24,7 +24,7 @@ async def root_route_handler(_):
         {
             "服务器当前的运行状态": "（正在运行）",
             "服务器运行时间": utils.get_readable_time(time.time() - StartTime),
-            "机器人的用户名为": "@" + StreamBot.username,
+#            "机器人的用户名为": "@" + StreamBot.username,
             "服务器连接数": len(multi_clients),
             "负载": dict(
                 ("bot" + str(c + 1), l)

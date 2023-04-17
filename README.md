@@ -86,10 +86,9 @@ cd TG-FilelinkBot
 ```sh
 sudo docker compose up -d
 ```
-## Setting up things
+## 配置文件设置
 
-If you're locally hosting, create a file named `.env` in the root directory and add all the variables there.
-An example of `.env` file:
+在根目录中创建一个名为 `.env` 的文件并将所有变量添加到其中。以下是 `.env` 文件的示例内容：
 
 ```sh
 API_ID=452525
@@ -99,57 +98,51 @@ MULTI_TOKEN1=55838383:yourfirstmulticlientbottokenhere
 MULTI_TOKEN2=55838383:yoursecondmulticlientbottokenhere
 MULTI_TOKEN3=55838383:yourthirdmulticlientbottokenhere
 BIN_CHANNEL=-100
-PORT=8080
-FQDN=yourserverip
+PORT=8081
+FQDN=你的ip/或者域名
 HAS_SSL=False
 ```
 
-### Mandatory Vars
-Before running the bot, you will need to set up the following mandatory variables:
+### 必要变量
 
-- `API_ID` : This is the API ID for your Telegram account, which can be obtained from my.telegram.org.
+在运行机器人之前，您需要设置以下必需的变量：
 
-- `API_HASH` : This is the API hash for your Telegram account, which can also be obtained from my.telegram.org.
+- `API_ID`：这是您的 Telegram 帐户的 API ID，可以从 my.telegram.org 上获取。
 
-- `BOT_TOKEN` : This is the bot token for the Telegram Media Streamer Bot, which can be obtained from [@BotFather](https://telegram.dog/BotFather).
+- `API_HASH`：这是您的 Telegram 帐户的 API 散列值，也可以从 my.telegram.org 上获取。
 
-- `BIN_CHANNEL` :  This is the channel ID for the log channel where the bot will forward media messages and store these files to make the generated direct links work. To obtain a channel ID, create a new telegram channel (public or private), post something in the channel, forward the message to [@missrose_bot](https://telegram.dog/MissRose_bot) and **reply the forwarded message** with the /id command. Copy the forwarded channel ID and paste it into the this field.
+- `BOT_TOKEN`：这是 Telegram 媒体流 Bot 的机器人令牌，可以从 [@BotFather](https://telegram.dog/BotFather) 获取。
 
-### Optional Vars
-In addition to the mandatory variables, you can also set the following optional variables:
+- `BIN_CHANNEL`：这是日志频道的通道 ID，在该频道中，机器人将转发媒体消息并存储这些文件以使生成的直接链接正常工作。要获取频道 ID，请创建一个新的 Telegram 频道（公共或私人），在该频道中发布一些内容，将消息转发到[@missrose_bot](https://telegram.dog/MissRose_bot)，**回复所转发的信息**，然后使用 /id 命令。复制转发的频道 ID 并将其粘贴到此字段中。
 
-- `ALLOWED_USERS`: The user Telegram IDs of users to which the bot only reply to.
-> **Note**
-> Leave this field empty and anyone will be able to use your bot instance.
-> You may also add multiple users by adding the IDs separated by comma (,)
+### 可选变量
 
-- `HASH_LENGTH` : This is the custom hash length for generated URLs. The hash length must be greater than 5 and less than 64.
+除了必填变量外，您还可以设置以下可选变量：
 
+- `ALLOWED_USERS`：用户 Telegram ID 的列表，仅限这些用户使用机器人。
+> **注意**
+> 如果不填写此字段，则任何人都可以使用您的机器人实例。
+> 您也可以通过添加逗号（,）分隔的 ID 来添加多个用户。
 
-- `SLEEP_THRESHOLD` : This sets the sleep threshold for flood wait exceptions that occur globally in the bot instance. Requests that raise flood wait exceptions below this threshold will be automatically invoked again after sleeping for the required amount of time. Flood wait exceptions requiring longer waiting times will be raised. The default value is 60 seconds. Better leave this field empty.
+- `HASH_LENGTH`：生成链接 URL 时的自定义哈希长度。哈希长度必须大于5且小于64。
 
+- `SLEEP_THRESHOLD`：设置全局 Bot 实例中发生洪水等待异常时的睡眠阈值。引发低于此阈值的洪水等待异常的请求将在休眠所需时间后自动重新调用。需要更长等待时间的洪水等待异常将被引发。默认值为60秒。最好不要填写此字段。
 
-- `WORKERS` : This sets the maximum number of concurrent workers for handling incoming updates. The default value is 3.
+- `WORKERS`：设置处理传入更新的并发工作器的最大数量。默认值为3。
 
+- `PORT`：设置 Web 应用程序侦听的端口。默认值为8080。
 
-- `PORT` : This sets the port that your webapp will listen to. The default value is 8080.
+- `WEB_SERVER_BIND_ADDRESS`：设置服务器绑定地址。默认值为0.0.0.0。
 
+- `NO_PORT`：可以是 True 或 False。如果设置为 True，则不会显示端口。
+> **注意**
+> 要使用此设置，必须将您的`PORT`指向HTTP协议的80端口或HTTPS协议的443端口，以使生成的链接起作用
 
-- `WEB_SERVER_BIND_ADDRESS` : This sets your server bind address. The default value is 0.0.0.0.
-
-- `NO_PORT` : This can be either True or False. If set to True, the port will not be displayed.
-> **Note**
-> To use this setting, you must point your `PORT` to 80 for HTTP protocol or to 443 for HTTPS protocol to make the generated links work.
-
-- `FQDN` :  A Fully Qualified Domain Name if present. Defaults to `WEB_SERVER_BIND_ADDRESS`
-
-- `HAS_SSL` : This can be either True or False. If set to True, the generated links will be in HTTPS format.
-
-- `KEEP_ALIVE`: If you want to make the server ping itself every `PING_INTERVAL` seconds to avoid sleeping. Helpful in PaaS Free tiers. Defaults to `False`
-
-- `PING_INTERVAL` : The time in ms you want the servers to be pinged each time to avoid sleeping (If you're on some PaaS). Defaults to `1200` or 20 minutes.
-
-- `USE_SESSION_FILE` : Use session files for client(s) rather than storing the pyrogram sqlite database in the memory
+- `FQDN`：如果存在，则为完全限定域名。默认为`WEB_SERVER_BIND_ADDRESS`
+- `HAS_SSL`：可以是True或False。如果设置为True，则生成的链接将采用HTTPS格式。
+- `KEEP_ALIVE`：如果您希望服务器每隔`PING_INTERVAL`秒自行ping以避免睡眠，请将其设置为True。在PaaS免费层中非常有用。默认为`False`
+- `PING_INTERVAL`：您希望每次ping服务器以避免睡眠的时间（如果您在某些PaaS上），以毫秒为单位。默认为`1200`或20分钟。
+- `USE_SESSION_FILE`：为客户端使用会话文件而不是将pyrogram sqlite数据库存储在内存中。
 
 ### For making use of Multi-Client support
 

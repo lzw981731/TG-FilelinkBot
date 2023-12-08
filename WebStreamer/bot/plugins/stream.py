@@ -35,7 +35,8 @@ async def media_receive_handler(_, m: Message):
     logger.info(f"Generated link: {stream_link} for {m.from_user.first_name}")
     try:
         await m.reply_text(
-            text="<code>{}</code>\n(<a href='{}'>短链接</a>)".format(
+            text="↓文件直连地址↓点击自动复制↓\n\n<code>{}</code>\n\n[<a href='{}'>短链接</a>]提示:长按可复制短链接".format(
+#            text="<code>{}</code>\n(<a href='{}'>短链接</a>)".format(
                 stream_link, short_link
             ),
             quote=True,
